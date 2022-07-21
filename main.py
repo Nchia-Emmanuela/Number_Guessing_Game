@@ -2,13 +2,9 @@ from random import randint
 from arts import logo
 import os
 
-run_time = 0
 
 EASY_LEVEL = 10
 HARD_LEVEL = 5
-print("Welcome to the Number Guessing Game!")
-print("I'm thinking of a Number between 1 and 100.")
-answer = randint(1, 100)
 
 def clear():
     os.system('cls')
@@ -22,20 +18,27 @@ def check_answer(guess, answer):
     else:
         print(f"You gote it! the answer is {answer}")
 
-level = input("Choose the level of difficulty. Type 'easy' or 'hard': ")
 def set_difficulty():
     """Sets the difficulty level of the Game either to hard or easy"""
+    level = input("Choose the level of difficulty. Type 'easy' or 'hard': ")
     if level == 'easy':
         return EASY_LEVEL
     elif level == 'hard':
         return HARD_LEVEL
 
 
+def game():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a Number between 1 and 100.")
+    answer = randint(1, 100)
 
-turns = set_difficulty()
-print(f"You have {turns} attempts, to guess the number")
-guess = int(input("Make a guess: "))
+    turns = set_difficulty()
+    print(f"You have {turns} attempts, to guess the number")
+    
 
-while turns > 0:
-    check_answer(guess, answer)
-    turns -= 1
+    guess = 0
+    while guess != answer:
+        guess = int(input("Make a guess: "))
+        check_answer(guess, answer)
+        turns -= 1
+game()
